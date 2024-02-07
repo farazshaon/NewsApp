@@ -4,9 +4,11 @@ import {PrismaClient} from "@prisma/client"
 export async function GET(req,res) {
     try{
         const prisma=new PrismaClient();
-        let {searchParams}=new URL(req.url);
-        let type= searchParams.get('type');
-        const result=await prisma.policies.findMany({where:{type:type}})
+        const result=await prisma.categories.findMany(
+            {
+                select:{id:true, name:true}
+            }
+        )
         return NextResponse.json({status:"success",data:result})
     }
     catch (e) {

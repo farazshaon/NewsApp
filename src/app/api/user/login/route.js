@@ -8,7 +8,7 @@ export async function POST(req, res){
         let reqBody = await req.json();
 
         const prisma = new PrismaClient();
-        const result = prisma.users.findUnique({
+        const result = prisma.users.findUnique({ 
             where: reqBody
         })
 
